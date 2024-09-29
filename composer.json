@@ -1,0 +1,14 @@
+{
+    "name": "only/test",
+    "autoload": {
+        "psr-4": {
+            "Only\\Test\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Daniil Ishin"
+        }
+    ],
+    "require": {}
+}
