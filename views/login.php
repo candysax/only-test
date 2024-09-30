@@ -1,6 +1,6 @@
 <?php include view_url('partials/header.php'); ?>
 
-<h1>Логин</h1>
+<h1>Вход</h1>
 <form action="/login" method="POST">
     <div>
         <label for="phone_or_email">Телефон или email:</label><br>

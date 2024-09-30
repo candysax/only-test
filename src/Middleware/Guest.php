@@ -2,11 +2,11 @@
 
 namespace Only\Test\Middleware;
 
-class Auth
+class Guest
 {
     public function handle(): void
     {
-        if (!isset($_SESSION['user'])) {
+        if (isset($_SESSION['user'])) {
             redirect('/');
         }
     }

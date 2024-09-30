@@ -11,6 +11,7 @@ class RegisterController
     public function index(): View
     {
         return View::render('register', [
+            'title' => 'Регистрация',
             'errors' => $_SESSION['_flash']['errors'] ?? [],
         ]);
     }

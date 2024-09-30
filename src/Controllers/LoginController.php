@@ -11,6 +11,7 @@ class LoginController
     public function index(): View
     {
         return View::render('login', [
+            'title' => 'Вход',
             'errors' => $_SESSION['_flash']['errors'] ?? [],
         ]);
     }
