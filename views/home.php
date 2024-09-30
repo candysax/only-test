@@ -1,6 +1,6 @@
-<?php include 'layouts/header.php' ?>
+<?php include view_url('partials/header.php'); ?>
 
 <h1>Home</h1>
 
-<?php include 'layouts/footer.php' ?>
+<?php include view_url('partials/footer.php'); ?>
 

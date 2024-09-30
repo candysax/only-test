@@ -16,18 +16,25 @@ class Router
         return $this->addRoute('POST', $path, $controller, $action);
     }
 
-    public function resolve(): void
+    public function patch(string $path, string $controller, string $action = null): Router
     {
-        $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
-        $query = $method === 'GET' ? $_GET : $_POST;
-        $path = parse_url($_SERVER['REQUEST_URI'])['path'];
-        $path = ($path !== '/')? rtrim($path, '/') : $path;
+        return $this->addRoute('PATCH', $path, $controller, $action);
+    }
 
+    public function delete(string $path, string $controller, string $action = null): Router
+    {
+        return $this->addRoute('DELETE', $path, $controller, $action);
+    }
+
+    public function resolve(string $method, string $path, array $query): void
+    {
         foreach ($this->routes as $route) {
             if ($route['path'] === $path &&
                 $route['method'] === strtoupper($method)) {
                 $controller = new $route['controller'];
                 call_user_func([$controller, $route['action']], $query);
+
+                unset($_SESSION['_flash']);
                 die;
             }
         }
