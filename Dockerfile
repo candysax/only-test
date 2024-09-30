@@ -12,3 +12,6 @@ RUN docker-php-ext-configure zip \
   && docker-php-ext-install zip pdo pdo_mysql curl
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
+
+RUN composer install
+RUN composer dump-autoload
