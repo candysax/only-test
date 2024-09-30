@@ -16,6 +16,9 @@ $router = new Router();
 
 include_once './routes.php';
 
+$_GET  = array_map('htmlspecialchars', $_GET);
+$_POST  = array_map('htmlspecialchars', $_POST);
+
 $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 $query = $method === 'GET' ? $_GET : $_POST;
 $path = parse_url($_SERVER['REQUEST_URI'])['path'];
