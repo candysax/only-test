@@ -18,7 +18,7 @@ class LoginController
 
     public function login($query): void
     {
-        $errors = (new LoginValidator())->validate($query);
+        $errors = (new LoginValidator())->validate($query)->flashErrors();
 
         $user = DB::query(
             'SELECT * FROM users WHERE `phone` = :phone_or_email OR `email` = :phone_or_email',
@@ -32,9 +32,8 @@ class LoginController
 
         if (empty($errors)) {
             $_SESSION['_flash']['errors']['global'][] = 'Неправильный телефон/email или пароль';
-        } else {
-            $_SESSION['_flash']['errors'] = $errors;
         }
+
         redirect('/login');
     }
 }

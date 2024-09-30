@@ -18,10 +18,9 @@ class RegisterController
 
     public function register(array $query): void
     {
-        $errors = (new RegisterValidator())->validate($query);
+        $errors = (new RegisterValidator())->validate($query)->flashErrors();
 
         if (!empty($errors)) {
-            $_SESSION['_flash']['errors'] = $errors;
             redirect('/register');
         }
 

@@ -6,7 +6,7 @@ use Only\Test\Base\Validator;
 
 class UpdateValidator extends Validator
 {
-    public function validate(array $data, ?int $userId = null): array
+    public function validate(array $data, ?int $userId = null): Validator
     {
         foreach ($data as $key => $value) {
             if (!$this->stringIsRequired($value)) {
@@ -34,6 +34,6 @@ class UpdateValidator extends Validator
             $this->errors['username'][] = 'Пользователь с таким никнеймом уже существует';
         }
 
-        return $this->errors;
+        return $this;
     }
 }

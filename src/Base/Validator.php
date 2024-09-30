@@ -2,9 +2,15 @@
 
 namespace Only\Test\Base;
 
-class Validator
+abstract class Validator
 {
     public array $errors = [];
+
+    public function flashErrors(): array
+    {
+        $_SESSION['_flash']['errors'] = $this->errors;
+        return $this->errors;
+    }
 
     public function stringIsRequired(string $value): bool
     {

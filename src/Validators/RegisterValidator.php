@@ -6,7 +6,7 @@ use Only\Test\Base\Validator;
 
 class RegisterValidator extends Validator
 {
-    public function validate(array $data): array
+    public function validate(array $data): Validator
     {
         foreach ($data as $key => $value) {
             if (!$this->stringIsRequired($value)) {
@@ -42,6 +42,6 @@ class RegisterValidator extends Validator
             $this->errors['username'][] = 'Пользователь с таким никнеймом уже существует';
         }
 
-        return $this->errors;
+        return $this;
     }
 }

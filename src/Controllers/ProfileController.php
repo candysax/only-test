@@ -4,6 +4,7 @@ namespace Only\Test\Controllers;
 
 use Only\Test\Base\DB;
 use Only\Test\Base\View;
+use Only\Test\Validators\ChangePasswordValidator;
 use Only\Test\Validators\UpdateValidator;
 
 class ProfileController
@@ -20,10 +21,9 @@ class ProfileController
 
     public function update(array $query): void
     {
-        $errors = (new UpdateValidator())->validate($query, $_SESSION['user']['id']);
+        $errors = (new UpdateValidator())->validate($query, $_SESSION['user']['id'])->flashErrors();
 
         if (!empty($errors)) {
-            $_SESSION['_flash']['errors'] = $errors;
             redirect('/profile');
         }
 
@@ -42,6 +42,20 @@ class ProfileController
 
     public function changePassword(array $query): void
     {
-        
+        $errors = (new ChangePasswordValidator())->validate($query)->flashErrors();
+
+        if (!empty($errors)) {
+            redirect('/profile');
+        }
+
+        DB::query(
+            'UPDATE users SET password = :password WHERE id = :id',
+            [
+                'id' => $_SESSION['user']['id'],
+                'password' => password_hash($query['password'], PASSWORD_DEFAULT),
+            ]
+        )->fetch();
+
+        redirect('/profile');
     }
 }

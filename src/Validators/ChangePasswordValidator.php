@@ -4,7 +4,7 @@ namespace Only\Test\Validators;
 
 use Only\Test\Base\Validator;
 
-class LoginValidator extends Validator
+class ChangePasswordValidator extends Validator
 {
     public function validate(array $data): Validator
     {
@@ -16,6 +16,10 @@ class LoginValidator extends Validator
 
         if (!$this->stringLength($data['password'], 6, 20)) {
             $this->errors['password'][] = 'Пароль должен быть от 6 до 20 символов';
+        }
+
+        if (!$this->doPasswordsMatch($data['password'], $data['password_repeat'])) {
+            $this->errors['password_repeat'][] = 'Пароли не совпадают';
         }
 
         return $this;
