@@ -34,6 +34,8 @@ class RegisterController
             ]
         );
 
+        $_SESSION['_flash']['success'] = 'Регистрация прошла успешно';
+
         redirect('/login');
     }
 }

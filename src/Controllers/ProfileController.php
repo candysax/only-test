@@ -37,6 +37,8 @@ class ProfileController
             ]
         )->fetch();
 
+        $_SESSION['_flash']['success'] = 'Данные успешно обновлены';
+
         redirect('/profile');
     }
 
@@ -55,6 +57,8 @@ class ProfileController
                 'password' => password_hash($query['password'], PASSWORD_DEFAULT),
             ]
         )->fetch();
+
+        $_SESSION['_flash']['success'] = 'Пароль успешно изменён';
 
         redirect('/profile');
     }

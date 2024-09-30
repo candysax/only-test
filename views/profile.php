@@ -1,5 +1,8 @@
 <?php include view_path('partials/header.php'); ?>
 
+<?php if (isset($_SESSION['_flash']['success'])) : ?>
+    <article><?= $_SESSION['_flash']['success'] ?></article>
+<?php endif; ?>
 <h1>Привет, <?= $user['username'] ?? '' ?></h1>
 <div class="pl-row">
     <div>

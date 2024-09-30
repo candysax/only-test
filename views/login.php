@@ -1,6 +1,9 @@
 <?php include view_path('partials/header.php'); ?>
 
 <h1>Вход</h1>
+<?php if (isset($_SESSION['_flash']['success'])) : ?>
+    <article><?= $_SESSION['_flash']['success'] ?></article>
+<?php endif; ?>
 <form action="/login" method="POST">
     <input type="hidden" name="_token" value="<?= $_SESSION['_token'] ?? '' ?>">
     <div>
