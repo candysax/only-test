@@ -32,7 +32,8 @@ class Router
             if ($route['path'] === $path &&
                 $route['method'] === strtoupper($method)) {
                 if ($route['method'] !== 'GET') {
-                    if (empty($_POST['_token']) || !hash_equals($_SESSION['_token'], $_POST['_token'])) {
+                    $token = htmlspecialchars($_POST['_token']);
+                    if (empty($token) || !hash_equals($_SESSION['_token'], $token)) {
                         abort(405);
                     }
                 }

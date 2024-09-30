@@ -31,12 +31,17 @@ class Validator
         return $password === $passwordRepeat;
     }
 
-    public function valueIsUnique(string $column, string $value): bool
+    public function valueIsUnique(string $column, string $value, ?int $exceptId = null): bool
     {
-        $count = DB::query(
-            'SELECT COUNT(*) FROM users WHERE `' . $column . '` = :value',
-            ['value' => $value]
-        )->fetch();
+        $params = ['value' => $value];
+        $query = 'SELECT COUNT(*) FROM users WHERE `' . $column . '` = :value';
+
+        if (!is_null($exceptId)) {
+            $query .= ' AND `id` != :except';
+            $params['except'] = $exceptId;
+        }
+
+        $count = DB::query($query, $params)->fetch();
 
         return $count[array_key_first($count)] === 0;
     }

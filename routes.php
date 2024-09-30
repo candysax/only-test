@@ -17,5 +17,7 @@ $router->get('/register', RegisterController::class, 'index', [Guest::class]);
 $router->post('/register', RegisterController::class, 'register', [Guest::class]);
 
 $router->get('/profile', ProfileController::class, 'index', [Auth::class]);
+$router->patch('/update', ProfileController::class, 'update', [Auth::class]);
+$router->patch('/change-password', ProfileController::class, 'changePassword', [Auth::class]);
 
 $router->delete('/logout', LogoutController::class, 'logout', [Auth::class]);
