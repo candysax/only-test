@@ -1,5 +1,5 @@
-<?php include view_url('partials/header.php'); ?>
+<?php include view_path('partials/header.php'); ?>
 
 <h1>404</h1>
 
-<?php include view_url('partials/footer.php'); ?>
+<?php include view_path('partials/footer.php'); ?>

@@ -8,7 +8,7 @@ class View
     {
         extract($params);
 
-        include view_url("{$view}.php");
+        include view_path("{$view}.php");
 
         return (new static());
     }

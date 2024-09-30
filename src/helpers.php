@@ -15,12 +15,19 @@ function redirect(string $path): void
     die();
 }
 
-function base_url(string $path): string
+function base_path(string $path): string
 {
-    return BASE_URL . $path;
+    return BASE_PATH . $path;
 }
 
-function view_url(string $path): string
+function view_path(string $path): string
 {
-    return VIEW_URL . $path;
+    return VIEW_PATH . $path;
+}
+
+function generateCsrfToken(): void
+{
+    if (empty($_SESSION['_token'])) {
+        $_SESSION['_token'] = bin2hex(random_bytes(32));
+    }
 }

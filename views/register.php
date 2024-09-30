@@ -1,7 +1,8 @@
-<?php include view_url('partials/header.php'); ?>
+<?php include view_path('partials/header.php'); ?>
 
 <h1>Регистрация</h1>
 <form action="/register" method="POST">
+    <input type="hidden" name="_token" value="<?= $_SESSION['_token'] ?? '' ?>">
     <div>
         <label for="phone">Телефон:</label><br>
         <input type="text" name="phone" id="phone">
@@ -42,4 +43,4 @@
     </div>
 </form>
 
-<?php include view_url('partials/footer.php'); ?>
+<?php include view_path('partials/footer.php'); ?>

@@ -13,7 +13,7 @@ class DB
 
     public function __construct()
     {
-        $config = require base_url('config.php');
+        $config = require base_path('config.php');
 
         $this->connection = new PDO(
             "mysql:host={$config['DB_HOST']};dbname={$config['DB_NAME']}",

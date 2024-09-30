@@ -1,7 +1,5 @@
 <?php include view_path('partials/header.php'); ?>
 
-<h1>Home</h1>
-<a href="/login">Вход</a>
-<a href="/register">Регистрация</a>
+<h1>405</h1>
 
 <?php include view_path('partials/footer.php'); ?>

@@ -2,13 +2,15 @@
 
 use Only\Test\Base\Router;
 
-const BASE_URL = __DIR__ . '/';
-const VIEW_URL = BASE_URL . '/views/';
+const BASE_PATH = __DIR__ . '/';
+const VIEW_PATH = BASE_PATH . '/views/';
 
 session_start();
 
 include_once './vendor/autoload.php';
 include_once './src/helpers.php';
+
+generateCsrfToken();
 
 $router = new Router();
 

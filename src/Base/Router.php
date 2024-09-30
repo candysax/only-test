@@ -31,6 +31,12 @@ class Router
         foreach ($this->routes as $route) {
             if ($route['path'] === $path &&
                 $route['method'] === strtoupper($method)) {
+                if ($route['method'] !== 'GET') {
+                    if (empty($_POST['_token']) || !hash_equals($_SESSION['_token'], $_POST['_token'])) {
+                        abort(405);
+                    }
+                }
+
                 foreach ($route['middleware'] as $middleware) {
                     (new $middleware)->handle();
                 }
